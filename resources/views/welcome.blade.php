@@ -7,25 +7,34 @@
                 <!-- Blog entries-->
                 <div class="col-lg-8">
                     <!-- Nested row for non-featured blog posts-->
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="..." class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                                        content. This content is a little bit longer.</p>
-                                    <p class="card-text">
-                                      <span class="me-4"><x-icons.user /> user</span>
-                                       <span class="me-4"><x-icons.created-at /> created at</span>
-                                      <span class="me-4"><x-icons.comment /> comments</span>
-                                    </p>
+                    @forelse ($posts as $post)
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="..." class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">{{ $post->title }}</h5>
+                                        <p class="card-text">{{ $post->content }}</p>
+                                        <p class="card-text">
+                                            <span class="me-4">
+                                                <x-icons.user /> {{ $post->user->name }}
+                                            </span>
+                                            <span class="me-4">
+                                                <x-icons.created-at /> {{ $post->created_at->diffForHumans() }}
+                                            </span>
+                                            <span class="me-4">
+                                                <x-icons.comment /> comments
+                                            </span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @empty
+                        
+                    @endforelse
                     <!-- Pagination-->
                     <nav aria-label="Pagination">
                         <hr class="my-0" />
