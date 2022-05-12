@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        $users = User::factory(5)->create();
+        foreach ($users as $user) {
+            $user->image()->save(Image::factory()->make());
+        }
 
         $posts = Post::factory(10)->create();
         foreach ($posts as $post) {

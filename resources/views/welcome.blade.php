@@ -21,7 +21,7 @@
                                         <p class="card-text">{{ $post->content }}</p>
                                         <p class="card-text">
                                             <span class="me-4">
-                                                <x-icons.user /> {{ $post->user->name }}
+                                                <a href="{{ route('users.show', [$post->user]) }}"><x-icons.user /> {{ $post->user->name }}</a>
                                             </span>
                                             <span class="me-4">
                                                 <x-icons.created-at /> {{ $post->created_at->diffForHumans() }}
