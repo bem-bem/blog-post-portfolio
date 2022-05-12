@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Image;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory(10)->create();
-        Post::factory(10)->create();
+
+        $posts = Post::factory(10)->create();
+        foreach ($posts as $post) {
+            $post->image()->save(Image::factory()->make());
+        }
     }
 }
