@@ -25,7 +25,7 @@
                                                 <x-icons.created-at /> {{ $post->created_at->diffForHumans() }}
                                             </span>
                                             <span class="me-4">
-                                                <x-icons.comment /> comments
+                                                <x-icons.comment /> {{ $post->comment_count }}
                                             </span>
                                         </p>
                                     </div>

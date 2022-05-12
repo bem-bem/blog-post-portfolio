@@ -9,6 +9,6 @@ class WelcomeInvoke extends Controller
 {
     public function __invoke(Request $request)
     {
-        return view('welcome', ['posts' => Post::with('user')->paginate(5)]);
+        return view('welcome', ['posts' => Post::with('user')->withCount('comment')->paginate(5)]);
     }
 }

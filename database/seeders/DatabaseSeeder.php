@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Image;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -23,5 +24,7 @@ class DatabaseSeeder extends Seeder
         foreach ($posts as $post) {
             $post->image()->save(Image::factory()->make());
         }
+
+        Comment::factory(100)->create();
     }
 }
