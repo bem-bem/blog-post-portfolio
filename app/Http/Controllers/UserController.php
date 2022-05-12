@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+
+    public function index()
+    {
+        
+    }
+
+
+    public function create()
+    {
+        //
+    }
+
+    public function store(Request $request)
+    {
+        //
+    }
+
+    public function show(User $user)
+    {
+        return view('users.index', ['user' => $user, 'posts' => Post::where('user_id', $user->id)->paginate(1)]);
+    }
+
+    public function edit(User $user)
+    {
+        
+    }
+
+    public function update(Request $request, User $user)
+    {
+        //
+    }
+
+    public function destroy(User $user)
+    {
+        //
+    }
+}

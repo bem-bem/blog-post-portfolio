@@ -25,6 +25,6 @@ class DatabaseSeeder extends Seeder
             $post->image()->save(Image::factory()->make());
         }
 
-        Comment::factory(100)->create();
+        Comment::factory(10)->create();
     }
 }
