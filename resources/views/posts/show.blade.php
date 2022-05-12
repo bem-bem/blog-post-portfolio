@@ -28,10 +28,11 @@
               <div class="card bg-light">
                 <div class="card-body">
                   <!-- Comment form-->
-                  <form class="mb-4">
-                    <textarea class="form-control mb-3" rows="3"
+                  <form class="mb-4" action="{{ route('comments.store', [$post]) }}" method="post">
+                    @csrf
+                    <textarea name="content" class="form-control mb-3" rows="3"
                       placeholder="Join the discussion and leave a comment!"></textarea>
-                      <button type="button" class="btn btn-primary float-end">Comment</button>
+                      <button type="submit" class="btn btn-primary float-end">Comment</button>
                   </form>
                   <!-- Single comment-->
                     @forelse ($post->comment as $comment)
