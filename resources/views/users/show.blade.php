@@ -47,12 +47,6 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <h4>Recent posts...</h4>
-        </div>
-      </div>
-
 @forelse ($posts as $post)
 <div class="card mb-3">
   <div class="row g-0">
@@ -62,7 +56,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title fw-bold">
-          <a href="{{ route('posts.show', [$post]) }}">{{ $post->title }}</a>
+          <a href="{{ route('public_users.show', [$post]) }}">{{ $post->title }}</a>
         </h5>
         <p class="card-text">{{ $post->content }}</p>
         <p class="card-text">
