@@ -18,8 +18,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //blog posts
-Route::resource('/posts', PostController::class)->except(['show']);
-Route::post('/posts/comments/{id}', [CommentController::class, 'storeComment'])->name('comments.store');
+Route::resource('/posts', PostController::class)->except(['show'])->middleware('auth');
+Route::post('/posts/comments/{id}', [CommentController::class, 'storeComment'])->name('comments.store')->middleware('auth');
 
 //users
 Route::resource('/users', UserController::class);

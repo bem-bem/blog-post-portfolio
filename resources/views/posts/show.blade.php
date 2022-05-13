@@ -24,35 +24,37 @@
               </section>
             </article>
             <!-- Comments section-->
-            <section class="mb-5">
-              <div class="card bg-light">
-                <div class="card-body">
-                  <!-- Comment form-->
-                  <form class="mb-4" action="{{ route('comments.store', [$post]) }}" method="post">
-                    @csrf
-                    <textarea name="content" class="form-control mb-3" rows="3"
-                      placeholder="Join the discussion and leave a comment!"></textarea>
-                      <button type="submit" class="btn btn-primary float-end">Comment</button>
-                  </form>
-                  <!-- Single comment-->
-                    @forelse ($post->comment as $comment)
+            @auth
+                <section class="mb-5">
+                    <div class="card bg-light">
+                      <div class="card-body">
+                        <!-- Comment form-->
+                        <form class="mb-4" action="{{ route('comments.store', [$post]) }}" method="post">
+                          @csrf
+                          <textarea name="content" class="form-control mb-3" rows="3"
+                            placeholder="Join the discussion and leave a comment!"></textarea>
+                          <button type="submit" class="btn btn-primary float-end">Comment</button>
+                        </form>
+                        <!-- Single comment-->
+                        @forelse ($post->comment as $comment)
                         <div class="d-flex">
-                            <div class="flex-shrink-0">
-                              <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-                            </div>
-                            <div class="ms-3">
-                              <div class="fw-bold">{{ $comment->user->name }}</div>
-                              <p>
-                                {{ $comment->content }}
-                              </p>
-                            </div>
+                          <div class="flex-shrink-0">
+                            <img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                           </div>
-                    @empty
+                          <div class="ms-3">
+                            <div class="fw-bold">{{ $comment->user->name }}</div>
+                            <p>
+                              {{ $comment->content }}
+                            </p>
+                          </div>
+                        </div>
+                        @empty
                         <p>No comments on this post</p>
-                    @endforelse
-                </div>
-              </div>
-            </section>
+                        @endforelse
+                      </div>
+                    </div>
+                  </section>
+            @endauth
           </div>
         </div>
       </div>
