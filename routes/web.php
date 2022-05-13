@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PublicUsersController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WelcomeInvoke;
 
 //for all users
-
-Route::get('/', [PublicUsersController::class, 'index'])->name('welcome');
-Route::get('/public/posts/{id}', [PublicUsersController::class, 'show'])->name('public_users.show');
+Route::controller(PublicUsersController::class)->group(function () {
+  Route::get('/', 'index')->name('welcome');
+  Route::get('/public/posts/{id}', 'show')->name('public_users.show');
+});
 
 //laravel/ui
 Auth::routes();
