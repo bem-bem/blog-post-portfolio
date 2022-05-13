@@ -27,6 +27,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $this->authorize('view', $user);
         return view('users.index', ['user' => $user, 'posts' => Post::where('user_id', $user->id)->withCount('comment')->paginate(10)]);
     }
 
