@@ -16,7 +16,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title fw-bold">
-                                            <a href="{{ route('posts.show', [$post]) }}">{{ $post->title }}</a>
+                                            <a href="{{ route('public_users.show', [$post]) }}">{{ $post->title }}</a>
                                         </h5>
                                         <p class="card-text">{{ $post->content }}</p>
                                         <p class="card-text">
@@ -44,13 +44,9 @@
                 <div class="col-lg-4">
                     <!-- Search widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Search</div>
+                        <div class="card-header">Create a new post</div>
                         <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..."
-                                    aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
+                            <a href="{{ route('posts.create') }}" class="btn btn-primary w-100">Post</a>
                         </div>
                     </div>
                     <!-- Categories widget-->

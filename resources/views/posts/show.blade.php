@@ -16,8 +16,8 @@
               </header>
               <!-- Preview image figure-->
               <figure class="mb-4">
-                <img class="img-fluid rounded" src="{{ asset('storage/' . $post->image->path) }}"
-                  alt="thumbnail" /></figure>
+                <img class="img-fluid rounded" src="{{ asset('storage/' . $post->image->path) }}" alt="thumbnail" />
+                </figure>
               <!-- Post content-->
               <section class="mb-5">
                 <p class="fs-5 mb-4">{{ $post->content }}</p>
