@@ -10,9 +10,6 @@
         <li class="nav-item">
           <a class="nav-link active" href="{{ route('welcome') }}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
         @auth
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -52,8 +49,8 @@
         @endauth
       </ul>
       <form class="d-flex" action="{{ route('users.index') }}" method="get">
-        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
+        <x-button color="btn-outline-success">{{ __('Search') }}</x-button>
       </form>
     </div>
   </div>

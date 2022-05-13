@@ -11,7 +11,7 @@
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('storage/' . $post->image->path) }}" class="img-fluid rounded-start" alt="thumbnail">
+                                    <img src="{{ $post->image ? asset('storage/' . $post->image->path) : asset('images/thumbnail.png') }}" class="img-fluid rounded-start" alt="thumbnail">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -37,6 +37,7 @@
                     @empty
                         
                     @endforelse
+                    <hr>
                     <!-- Pagination-->
                         {{ $posts->links() }}
                 </div>

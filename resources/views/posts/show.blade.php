@@ -12,11 +12,11 @@
                 <!-- Post title-->
                 <h1 class="fw-bolder mb-1">{{ $post->title }}</h1>
                 <!-- Post date-->
-                <div class="text-muted fst-italic mb-2">Posted on {{ $post->created_at }}</div>
+                <div class="text-muted fst-italic mb-2">Posted on {{ date('M / d / Y', strtotime($post->created_at)) }}</div>
               </header>
               <!-- Preview image figure-->
               <figure class="mb-4">
-                <img class="img-fluid rounded" src="{{ asset('storage/' . $post->image->path) }}" alt="thumbnail" />
+                <img class="img-fluid rounded" src="{{ $post->image ? asset('storage/' . $post->image->path) : asset('images/thumbnail.png') }}" alt="thumbnail" />
                 </figure>
               <!-- Post content-->
               <section class="mb-5">
@@ -33,7 +33,7 @@
                           @csrf
                           <textarea name="content" class="form-control mb-3" rows="3"
                             placeholder="Join the discussion and leave a comment!"></textarea>
-                          <button type="submit" class="btn btn-primary float-end">Comment</button>
+                            <x-button class="float-end">Comment</x-button>
                         </form>
                         <!-- Single comment-->
                         @forelse ($post->comment as $comment)
@@ -51,6 +51,7 @@
                         @empty
                         <p>No comments on this post</p>
                         @endforelse
+                         <x-alert :status="'success'"></x-alert>
                       </div>
                     </div>
                   </section>

@@ -13,10 +13,10 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                      <img src="{{ $user->image ? asset('storage/' . $user->image->path) : '' }}" class="card-img-top" alt="...">
+                    <div class="card">
+                      <img src="{{ $user->image ? asset('storage/' . $user->image->path) : asset('images/avatar.png') }}" class="card-img-top" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">{{ $user->name }}</h5>
+                        <h5 class="card-title text-center">{{ $user->name }}</h5>
                       </div>
                     </div>
                   </div>
@@ -47,11 +47,12 @@
         </div>
       </div>
 
+      {{-- recent posts --}}
 @forelse ($posts as $post)
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{ $post->image ? asset('storage/' . $post->image->path) : '' }}" class="sm:w-100  rounded-start" alt="thumbnail">
+      <img src="{{ $post->image ? asset('storage/' . $post->image->path) : asset('images/thumbnail.png') }}" class="img-fluid  rounded-start" alt="thumbnail">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -77,6 +78,7 @@
 @empty
 
 @endforelse
+<hr>
   <div class="row">
     <div class="col">
       {{ $posts->links() }}

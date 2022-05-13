@@ -50,7 +50,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <button type="submit" class="btn btn-primary float-end">Submit</button>
+                <x-button class="float-end">Submit</x-button>
               </div>
             </div>
           </form>
