@@ -50,6 +50,20 @@
       {{-- recent posts --}}
 @forelse ($posts as $post)
 <div class="card mb-3">
+  <div class="card-header">
+   <div class="btn-group dropstart  float-end">
+    <button type="button" class="btn btn-link btn-sm " data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-gear fs-3"></i>
+    </button>
+    <ul class="dropdown-menu">
+      <!-- Dropdown menu links -->
+      <li><a class="dropdown-item" href="{{ route('posts.edit', [$post]) }}">Update <i class="bi bi-pencil"></i></a></li>
+      <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete <i class="bi bi-trash"></i></a></li>
+    </ul>
+  </div>
+  {{-- delete modal --}}
+  <x-modal route="{{ route('posts.destroy', [$post]) }}"></x-modal>
+  </div>
   <div class="row g-0">
     <div class="col-md-4">
       <img src="{{ $post->image ? asset('storage/' . $post->image->path) : asset('images/thumbnail.png') }}" class="img-fluid  rounded-start" alt="thumbnail">

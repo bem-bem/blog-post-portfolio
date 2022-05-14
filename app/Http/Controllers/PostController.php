@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -23,11 +24,11 @@ class PostController extends Controller
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
        
-        $blogPost = Post::create($validated);
+        $post = Post::create($validated);
 
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('post-thumbnails');
-            $blogPost->image()->save(
+            $post->image()->save(
                 Image::make(['path' => $path])
             );
         }
@@ -37,16 +38,36 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+        $post->fill($validated);
+
+        if ($request->hasFile('thumbnail')) {
+            $path = $request->file('thumbnail')->store('post-thumbnails');
+
+            if ($post->image) {
+                Storage::delete($post->image->path);
+                $post->image->path = $path;
+                $post->image->save();
+            } else {
+                $post->image()->save(
+                    Image::make(['path' => $path])
+                );
+            }
+        }
+
+        $post->save();
+        return redirect()->route('users.show', [auth()->id()])->with('success', 'Post Updated successfully.');
     }
 
     public function destroy(Post $post)
     {
-        //
+        Storage::delete($post->image->path);
+        $post->delete();
+        return back()->with('success', 'Post Deleted successfully.');
     }
 }
