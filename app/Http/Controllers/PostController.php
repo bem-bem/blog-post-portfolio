@@ -38,11 +38,13 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         return view('posts.edit', ['post' => $post]);
     }
 
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('update', $post);
         $validated = $request->validated();
         $post->fill($validated);
 
@@ -66,6 +68,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         Storage::delete($post->image->path);
         $post->delete();
         return back()->with('success', 'Post Deleted successfully.');
