@@ -18,7 +18,7 @@ class ImageFactory extends Factory
     {
         $dummyImages = [
             '1.jpeg',
-            '2.jpeg',
+            '2.jpg',
             '3.jpeg',
             '4.jpeg',
             '5.jpeg',
