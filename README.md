@@ -3,6 +3,7 @@
 
 ## Installation
 
+- run, composer install
 - clone this repo in your machine
 - move the factory-mages in public forlder to storage/app/public
 - in the terminal run, php artisan storage:link
