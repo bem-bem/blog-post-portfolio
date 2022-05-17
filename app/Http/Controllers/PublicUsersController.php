@@ -8,7 +8,7 @@ class PublicUsersController extends Controller
 {
     public function index()
     {
-        return view('welcome', ['posts' => Post::with('user')->withCount('comment')->paginate(5)]);
+        return view('welcome', ['posts' => Post::latest()->with('user')->withCount('comment')->paginate(5)]);
     }
 
     public function show($id)
